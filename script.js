@@ -169,55 +169,54 @@ function createKeyboard() {
 }
 
 function handleKeyPress(event) {
-  const key = event.target;
-  const boxes = document.querySelectorAll(".selectedWords .box");
-  const letter = key.textContent.trim();
-
-  key.disabled = true;
-  key.style.backgroundColor = "#b0bec5"; // Gray out the key
-
-  if (selectedKeyValuePairs.hasOwnProperty(letter)) {
-    messageElement.textContent = "";
-    let correct = false;
-
-    for (let i = 0; i < syllables.length; i++) {
-      if (
-        boxes[i].textContent === "" &&
-        syllables[i] === selectedKeyValuePairs[letter]
-      ) {
-        boxes[i].textContent = selectedKeyValuePairs[letter]; // Fill correct syllable
-        boxes[i].classList.add("bounce");
-        setTimeout(() => boxes[i].classList.remove("bounce"), 1000);
-        correct = true;
-        break;
+    const key = event.target;
+    const boxes = document.querySelectorAll(".selectedWords .box");
+    const letter = key.textContent.trim();
+  
+    key.disabled = true;
+    key.style.backgroundColor = "#b0bec5"; // Gray out the key
+  
+    if (selectedKeyValuePairs.hasOwnProperty(letter)) {
+      messageElement.textContent = "";
+      let correct = false;
+  
+      for (let i = 0; i < syllables.length; i++) {
+        if (boxes[i].textContent === "" && syllables[i] === selectedKeyValuePairs[letter]) {
+          boxes[i].textContent = selectedKeyValuePairs[letter]; // Fill correct syllable
+          boxes[i].classList.add("bounce");
+          setTimeout(() => boxes[i].classList.remove("bounce"), 1000);
+          correct = true;
+          break;
+        }
+      }
+  
+      if (correct && isAllFilled(boxes)) {
+        resetGame.disabled = false;
+        messageElement.textContent = "🎉 అభినందనలు! మీరు పదాన్ని పూర్తి చేశారు!";
+      }
+    } else {
+      incorrectAttempts++; // Increase incorrect attempts
+      messageElement.textContent = `❌ తప్పు! మరోసారి ప్రయత్నించండి. (${incorrectAttempts}/4)`;
+  
+      // Reveal a letter after 4 incorrect attempts
+      if (incorrectAttempts === 4) {
+        revealALetter(boxes);
+        incorrectAttempts = 0; // ✅ Reset the counter after revealing a letter
       }
     }
-
-    if (correct && isAllFilled(boxes)) {
-      resetGame.disabled = false;
-      messageElement.textContent = "🎉 అభినందనలు! మీరు పదాన్ని పూర్తి చేశారు!";
-    }
-  } else {
-    incorrectAttempts++; // Increase incorrect attempts
-    messageElement.textContent = `❌ తప్పు! మరోసారి ప్రయత్నించండి. (${incorrectAttempts}/4)`;
-
-    // Reveal a letter after 4 incorrect attempts
-    if (incorrectAttempts === 4) {
-      revealALetter(boxes);
+  }
+  
+  // Function to reveal a letter after 4 incorrect attempts
+  function revealALetter(boxes) {
+    for (let i = 0; i < syllables.length; i++) {
+      if (boxes[i].textContent === "") {
+        boxes[i].textContent = syllables[i]; // Reveal the correct letter
+        boxes[i].classList.add("hint"); // Add a visual effect
+        break; // Reveal only one letter
+      }
     }
   }
-}
-
-// Function to reveal a letter after 4 incorrect attempts
-function revealALetter(boxes) {
-  for (let i = 0; i < syllables.length; i++) {
-    if (boxes[i].textContent === "") {
-      boxes[i].textContent = syllables[i]; // Reveal the correct letter
-      boxes[i].classList.add("hint"); // Add a visual effect
-      break; // Reveal only one letter
-    }
-  }
-}
+  
 
 function isAllFilled(boxes) {
   return Array.from(boxes).every((box) => box.textContent.trim() !== "");
