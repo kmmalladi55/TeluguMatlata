@@ -71,7 +71,6 @@ const teluguLetters = [
 //   వస్తువులు: "objects.jpg",
 // };
 
-
 let currentCategory = "";
 let randomWord = "";
 let selectedKeyValuePairs = {};
@@ -83,32 +82,30 @@ let incorrectAttempts = 0; // Track wrong guesses
 categoriesDiv.style.display = "none";
 
 startGame.addEventListener("click", () => {
-    startGame.style.display = "none"; 
-    categoriesDiv.style.display = "flex"; // Show categories in a horizontal layout
+  startGame.style.display = "none";
+  categoriesDiv.style.display = "flex"; // Show categories in a horizontal layout
 });
 
 // Update category buttons with images
-categoryButtons.forEach(button => {
-    button.addEventListener("click", (event) => {
-        currentCategory = event.target.dataset.category.trim();
-        
-        if (!teluguWords[currentCategory]) {
-            console.error("Category not found:", currentCategory);
-            return;
-        }
+categoryButtons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    currentCategory = event.target.dataset.category.trim();
 
-        categoryTitle.innerText = `వర్గం: ${currentCategory}`;
-        categoryTitle.style.display = "block";
+    if (!teluguWords[currentCategory]) {
+      console.error("Category not found:", currentCategory);
+      return;
+    }
 
-        // Hide category selection after one is picked
-        categoriesDiv.style.display = "none";  
+    categoryTitle.innerText = `వర్గం: ${currentCategory}`;
+    categoryTitle.style.display = "block";
 
-        // Start the game with the selected category
-        startTheGame();
-    });
+    // Hide category selection after one is picked
+    categoriesDiv.style.display = "none";
+
+    // Start the game with the selected category
+    startTheGame();
+  });
 });
-
-
 
 resetGame.addEventListener("click", () => {
   location.reload();
@@ -179,14 +176,14 @@ function handleKeyPress(event) {
   key.disabled = true;
   key.style.backgroundColor = "#b0bec5"; // Gray out the key
 
-  if (selectedKeyValuePairs[letter]) {
+  if (selectedKeyValuePairs.hasOwnProperty(letter)) {
     messageElement.textContent = "";
     let correct = false;
 
     for (let i = 0; i < syllables.length; i++) {
       if (
         boxes[i].textContent === "" &&
-        Object.keys(selectedKeyValuePairs).includes(letter)
+        syllables[i] === selectedKeyValuePairs[letter]
       ) {
         boxes[i].textContent = selectedKeyValuePairs[letter]; // Fill correct syllable
         boxes[i].classList.add("bounce");
@@ -211,6 +208,17 @@ function handleKeyPress(event) {
   }
 }
 
+// Function to reveal a letter after 4 incorrect attempts
+function revealALetter(boxes) {
+  for (let i = 0; i < syllables.length; i++) {
+    if (boxes[i].textContent === "") {
+      boxes[i].textContent = syllables[i]; // Reveal the correct letter
+      boxes[i].classList.add("hint"); // Add a visual effect
+      break; // Reveal only one letter
+    }
+  }
+}
+
 function isAllFilled(boxes) {
   return Array.from(boxes).every((box) => box.textContent.trim() !== "");
 }
@@ -222,19 +230,6 @@ function resetKeyboard() {
     key.style.backgroundColor = "#90caf9"; // Reset to default color
   });
 }
-
-function revealALetter(boxes) {
-  for (let i = 0; i < syllables.length; i++) {
-    if (boxes[i].textContent === "") {
-      boxes[i].textContent = syllables[i]; // Reveal a letter
-      boxes[i].style.color = "red"; // Highlight the revealed letter
-      messageElement.textContent = "🔍 ఒక అక్షరం వెల్లడించబడింది!";
-      incorrectAttempts = 0; // Reset incorrect attempts
-      break;
-    }
-  }
-}
-
 
 document.addEventListener("DOMContentLoaded", () => {
   createKeyboard();
