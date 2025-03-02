@@ -1,131 +1,241 @@
 // script.js
-import { teluguWord, keyValuePairs } from './data.js';
-
-const teluguLetters = [
-    "అ", "ఆ", "ఇ", "ఈ", "ఉ", "ఊ", "ఋ", "ఎ", "ఏ", "ఐ",
-    "ఒ", "ఓ", "ఔ", "క", "ఖ", "గ", "ఘ", "ఙ", "చ", "ఛ",
-    "జ", "ఝ", "ఞ", "ట", "ఠ", "డ", "ఢ", "ణ", "త", "థ",
-    "ద", "ధ", "న", "ప", "ఫ", "బ", "భ", "మ", "య", "ర",
-    "ల", "వ", "శ", "ష", "స", "హ", "ళ", "క్ష", "ఱ"
-];
-
+import { teluguWords, keyValuePairs } from "./data.js";
 
 const container = document.querySelector(".container"),
-    playground = document.querySelector(".playground"),
-    startGame = document.querySelector(".startGame"),
-    selectedWords = document.querySelector(".selectedWords"),
-    resetGame = document.querySelector(".resetGame"),
-    messageElement = document.querySelector(".message"),
-    keyboard = document.querySelector("#keyboard");
+  playground = document.querySelector(".playground"),
+  startGame = document.querySelector(".startGame"),
+  selectedWords = document.querySelector(".selectedWords"),
+  resetGame = document.querySelector(".resetGame"),
+  messageElement = document.querySelector(".message"),
+  keyboard = document.querySelector("#keyboard"),
+  categoriesDiv = document.querySelector(".categories"),
+  categoryButtons = document.querySelectorAll(".category"),
+  categoryTitle = document.querySelector(".categoryTitle");
 
-let randomWord = '';
+const teluguLetters = [
+  "అ",
+  "ఆ",
+  "ఇ",
+  "ఈ",
+  "ఉ",
+  "ఊ",
+  "ఋ",
+  "ఎ",
+  "ఏ",
+  "ఐ",
+  "ఒ",
+  "ఓ",
+  "ఔ",
+  "క",
+  "ఖ",
+  "గ",
+  "ఘ",
+  "జ",
+  "చ",
+  "ఛ",
+  "జ",
+  "ఝ",
+  "ఞ",
+  "ట",
+  "ఠ",
+  "డ",
+  "ఢ",
+  "ణ",
+  "త",
+  "థ",
+  "ద",
+  "ధ",
+  "న",
+  "ప",
+  "ఫ",
+  "బ",
+  "భ",
+  "మ",
+  "య",
+  "ర",
+  "ల",
+  "వ",
+  "శ",
+  "ష",
+  "స",
+  "హ",
+  "ళ",
+  "క్ష",
+  "ఱ",
+];
+
+// const categoryImages = {
+//   ప్రదేశాలు: "world-map.jpg", // Replace with actual image URL or file path
+//   సినిమాలు: "movie-theme.jpg",
+//   సాహిత్యం: "books.jpg",
+//   వస్తువులు: "objects.jpg",
+// };
+
+
+let currentCategory = "";
+let randomWord = "";
 let selectedKeyValuePairs = {};
 let syllables = [];
-let availableWordKeys = Object.keys(teluguWord); // 🆕 Word tracking
+let availableWordKeys = [];
+let incorrectAttempts = 0; // Track wrong guesses
+
+// Ensure categories are hidden initially
+categoriesDiv.style.display = "none";
 
 startGame.addEventListener("click", () => {
-    if (startGame.innerText === "Start Game") {
-        startTheGame();
-    } else {
-        playground.style.display = "none";
-        startGame.innerText = "Start Game";
-        resetGame.style.display = "none";
-        resetKeyboard(); // 🆕 Re-enable keyboard letters when going back home
-    }
+    startGame.style.display = "none"; 
+    categoriesDiv.style.display = "flex"; // Show categories in a horizontal layout
 });
 
+// Update category buttons with images
+categoryButtons.forEach(button => {
+    button.addEventListener("click", (event) => {
+        currentCategory = event.target.dataset.category.trim();
+        
+        if (!teluguWords[currentCategory]) {
+            console.error("Category not found:", currentCategory);
+            return;
+        }
+
+        categoryTitle.innerText = `వర్గం: ${currentCategory}`;
+        categoryTitle.style.display = "block";
+
+        // Hide category selection after one is picked
+        categoriesDiv.style.display = "none";  
+
+        // Start the game with the selected category
+        startTheGame();
+    });
+});
+
+
+
 resetGame.addEventListener("click", () => {
-    startTheGame();
+  location.reload();
 });
 
 function startTheGame() {
-    playground.style.display = "block";
-    startGame.innerText = "Back to Home";
-    resetGame.style.display = "inline";
-    resetGame.disabled = true;
-    messageElement.textContent = "";
-    startToGuessTheWord();
-    resetKeyboard();
+  console.log("Starting game with category:", currentCategory);
+  console.log("Available categories:", Object.keys(teluguWords));
+
+  if (!teluguWords[currentCategory]) {
+    console.error(`Error: Category "${currentCategory}" not found.`);
+    return;
+  }
+
+  playground.style.display = "block";
+  categoriesDiv.style.display = "none";
+  resetGame.style.display = "inline";
+  resetGame.disabled = true;
+  messageElement.textContent = "";
+
+  availableWordKeys = Object.keys(teluguWords[currentCategory]);
+  startToGuessTheWord();
+  resetKeyboard();
 }
 
 function startToGuessTheWord() {
-    selectedWords.innerHTML = "";
-    messageElement.textContent = "";
+  selectedWords.innerHTML = "";
+  messageElement.textContent = "";
 
-    if (availableWordKeys.length === 0) {
-        availableWordKeys = Object.keys(teluguWord); // 🔁 Reset after all words used
-    }
+  if (availableWordKeys.length === 0) {
+    availableWordKeys = Object.keys(teluguWords[currentCategory]);
+  }
 
-    const randomIndex = Math.floor(Math.random() * availableWordKeys.length);
-    const randomWordKey = availableWordKeys.splice(randomIndex, 1)[0]; // 🎯 No repeats
-    randomWord = teluguWord[randomWordKey];
-    console.log(randomWord);
+  const randomIndex = Math.floor(Math.random() * availableWordKeys.length);
+  const randomWordKey = availableWordKeys.splice(randomIndex, 1)[0];
+  randomWord = teluguWords[currentCategory][randomWordKey];
 
-    selectedKeyValuePairs = keyValuePairs[randomWordKey];
-    syllables = Object.values(selectedKeyValuePairs);
+  selectedKeyValuePairs = keyValuePairs[currentCategory][randomWordKey];
+  syllables = Object.values(selectedKeyValuePairs);
 
-    syllables.forEach(() => {
-        let div = document.createElement("div");
-        div.classList.add("box");
-        div.innerHTML = "";
-        selectedWords.appendChild(div);
-    });
+  syllables.forEach(() => {
+    let div = document.createElement("div");
+    div.classList.add("box");
+    div.innerHTML = "";
+    selectedWords.appendChild(div);
+  });
+
+  resetGame.disabled = false;
 }
 
 function createKeyboard() {
-    keyboard.innerHTML = "";
-    teluguLetters.forEach(letter => {
-        const key = document.createElement("button");
-        key.className = "key";
-        key.innerText = letter;
-        key.style.backgroundColor = "#90caf9"; 
-        keyboard.appendChild(key);
-        key.addEventListener("click", handleKeyPress);
-    });
+  keyboard.innerHTML = "";
+  teluguLetters.forEach((letter) => {
+    const key = document.createElement("button");
+    key.className = "key";
+    key.innerText = letter;
+    key.style.backgroundColor = "#90caf9";
+    keyboard.appendChild(key);
+    key.addEventListener("click", handleKeyPress);
+  });
 }
 
 function handleKeyPress(event) {
-    const key = event.target;
-    const boxes = document.querySelectorAll(".selectedWords .box");
-    const letter = key.textContent.trim();
+  const key = event.target;
+  const boxes = document.querySelectorAll(".selectedWords .box");
+  const letter = key.textContent.trim();
 
-    key.disabled = true;
-    key.style.backgroundColor = "#b0bec5";
+  key.disabled = true;
+  key.style.backgroundColor = "#b0bec5"; // Gray out the key
 
-    if (selectedKeyValuePairs[letter]) {
-        messageElement.textContent = "";
-        const values = selectedKeyValuePairs[letter];
-        let filled = false;
-        for (let i = 0; i < syllables.length; i++) {
-            if (syllables[i] === values && boxes[i].textContent === "") {
-                boxes[i].textContent = values;
-                boxes[i].classList.add("bounce");
-                setTimeout(() => boxes[i].classList.remove("bounce"), 1000);
-                filled = true;
-                break;
-            }
-        }
-        if (filled && isAllFilled(boxes)) {
-            resetGame.disabled = false;
-            messageElement.textContent = "🎉 Congratulations! Word Completed!";
-        }
-    } else {
-        messageElement.textContent = "Incorrect selection! Try Again!";
+  if (selectedKeyValuePairs[letter]) {
+    messageElement.textContent = "";
+    let correct = false;
+
+    for (let i = 0; i < syllables.length; i++) {
+      if (
+        boxes[i].textContent === "" &&
+        Object.keys(selectedKeyValuePairs).includes(letter)
+      ) {
+        boxes[i].textContent = selectedKeyValuePairs[letter]; // Fill correct syllable
+        boxes[i].classList.add("bounce");
+        setTimeout(() => boxes[i].classList.remove("bounce"), 1000);
+        correct = true;
+        break;
+      }
     }
+
+    if (correct && isAllFilled(boxes)) {
+      resetGame.disabled = false;
+      messageElement.textContent = "🎉 అభినందనలు! మీరు పదాన్ని పూర్తి చేశారు!";
+    }
+  } else {
+    incorrectAttempts++; // Increase incorrect attempts
+    messageElement.textContent = `❌ తప్పు! మరోసారి ప్రయత్నించండి. (${incorrectAttempts}/4)`;
+
+    // Reveal a letter after 4 incorrect attempts
+    if (incorrectAttempts === 4) {
+      revealALetter(boxes);
+    }
+  }
 }
 
 function isAllFilled(boxes) {
-    return Array.from(boxes).every(box => box.textContent.trim() !== "");
+  return Array.from(boxes).every((box) => box.textContent.trim() !== "");
 }
 
 function resetKeyboard() {
-    const keys = document.querySelectorAll(".key");
-    keys.forEach((key) => {
-        key.disabled = false;
-        key.style.backgroundColor = "#90caf9";
-    });
+  const keys = document.querySelectorAll(".key");
+  keys.forEach((key) => {
+    key.disabled = false;
+    key.style.backgroundColor = "#90caf9"; // Reset to default color
+  });
 }
 
+function revealALetter(boxes) {
+  for (let i = 0; i < syllables.length; i++) {
+    if (boxes[i].textContent === "") {
+      boxes[i].textContent = syllables[i]; // Reveal a letter
+      boxes[i].style.color = "red"; // Highlight the revealed letter
+      messageElement.textContent = "🔍 ఒక అక్షరం వెల్లడించబడింది!";
+      incorrectAttempts = 0; // Reset incorrect attempts
+      break;
+    }
+  }
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
-    createKeyboard();
+  createKeyboard();
 });

@@ -1,36 +1,40 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="te">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Telugu Word Game</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <!-- ✅ Order matters: data.js first, then script.js -->
     <script type="module" src="data.js"></script>
     <script type="module" src="script.js"></script>
     <!-- <script defer src="script.js"></script> -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu&display=swap">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu&display=swap"
+    />
+  </head>
+  <body>
     <h1>తెలుగు మాట్లాట - ఒక సరదా ఆట</h1>
-    <div class="container">
-        <div class="playground">
-            <br />
-            <div id="message" class="message"></div>
-            <br />
-            <div class="selectedWords">
-            </div>
-        </div>
-        <div id="keyboard"></div>
-        <!-- <button onclick="checkWord()">Submit</button> -->
-        <div class="btn">
-            <button class="startGame"> Start Game</button
-            ><button class="resetGame"> Reset Game</button>
-        </div>
-        
-        <br/>
+    <h2 class="categoryTitle" style="display: none"></h2>
 
-    </div> 
-   
+    <div class="container">
+        <div class="categories" style="display: none">
+        <div class="category" data-category="ప్రదేశాలు">ప్రదేశాలు</div>
+        <div class="category" data-category="సినిమాలు">సినిమాలు</div>
+        <div class="category" data-category="సాహిత్యం">సాహిత్యం</div>
+        <div class="category" data-category="వస్తువులు">వస్తువులు</div>
+      </div>
+      <div class="playground" style="display: none">
+        <div id="message" class="message"></div>
+        <div class="selectedWords"></div>
+      </div>
+      <div id="keyboard"></div>
+      <div class="btn">
+        <button class="startGame">Start Game</button>
+        <button class="resetGame">Reset Game</button>
+      </div>
+    </div>
 </body>
 </html>
