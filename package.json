@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "gulp": "^5.0.0",
+    "gulp-obfuscator": "^0.0.0"
+  }
+}
