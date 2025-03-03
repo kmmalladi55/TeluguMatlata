@@ -1,6 +1,7 @@
 // script.js
 import { teluguWords, keyValuePairs } from "./data.js";
 
+
 const container = document.querySelector(".container"),
   playground = document.querySelector(".playground"),
   startGame = document.querySelector(".startGame"),
@@ -112,8 +113,8 @@ resetGame.addEventListener("click", () => {
 });
 
 function startTheGame() {
-  console.log("Starting game with category:", currentCategory);
-  console.log("Available categories:", Object.keys(teluguWords));
+  // console.log("Starting game with category:", currentCategory);
+  // console.log("Available categories:", Object.keys(teluguWords));
 
   if (!teluguWords[currentCategory]) {
     console.error(`Error: Category "${currentCategory}" not found.`);
@@ -134,6 +135,7 @@ function startTheGame() {
 function startToGuessTheWord() {
   selectedWords.innerHTML = "";
   messageElement.textContent = "";
+  incorrectAttempts = 0; // ✅ Reset attempts for each new word
 
   if (availableWordKeys.length === 0) {
     availableWordKeys = Object.keys(teluguWords[currentCategory]);
@@ -186,6 +188,7 @@ function handleKeyPress(event) {
           boxes[i].classList.add("bounce");
           setTimeout(() => boxes[i].classList.remove("bounce"), 1000);
           correct = true;
+          incorrectAttempts = 0; // ✅ Reset incorrect attempts after placing a correct letter
           break;
         }
       }
@@ -201,6 +204,7 @@ function handleKeyPress(event) {
       // Reveal a letter after 4 incorrect attempts
       if (incorrectAttempts === 4) {
         revealALetter(boxes);
+        messageElement.textContent = "";
         incorrectAttempts = 0; // ✅ Reset the counter after revealing a letter
       }
     }
@@ -212,6 +216,7 @@ function handleKeyPress(event) {
       if (boxes[i].textContent === "") {
         boxes[i].textContent = syllables[i]; // Reveal the correct letter
         boxes[i].classList.add("hint"); // Add a visual effect
+        incorrectAttempts = 0; // ✅ Reset incorrect attempts after revealing a letter
         break; // Reveal only one letter
       }
     }
@@ -229,6 +234,14 @@ function resetKeyboard() {
     key.style.backgroundColor = "#90caf9"; // Reset to default color
   });
 }
+
+document.addEventListener("contextmenu", (event) => event.preventDefault());
+
+document.addEventListener("keydown", (event) => {
+  if (event.ctrlKey && (event.key === "u" || event.key === "s" || event.key === "i" || event.key === "j")) {
+    event.preventDefault();
+  }
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   createKeyboard();
