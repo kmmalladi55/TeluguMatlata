@@ -1,6 +1,9 @@
-/* style.css */
+/* Default styles for laptops and larger screens */
+h1 {
+  font-size: 24px;
+}
 
-
+/* General Styles */
 body {
   font-family: "Noto Sans Telugu", "Pothana2000", "Lohit Telugu", sans-serif;
   background: #78c1f3;
@@ -14,33 +17,51 @@ body {
   overflow: hidden; /* Prevent scrolling */
 }
 
+
+/* Container adjustments */
 .container {
   background: #f8f8f8;
-  border-radius: 40px;
-  padding: 40px; /* Adjusted for better fit */
+  border-radius: 20px;
+  padding: 40px;
+  margin-top: 20px;
   box-shadow: 10px 10px 0 0 #000000;
-  max-width: 90vw; /* Ensure it fits on smaller screens */
-  max-height: 80vh; /* Prevents overflow */
+  max-width: 80%;
+}
+
+/* Category Selection */
+.categories {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: nowrap;
   justify-content: center;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px 0;
+  width: 100%;
 }
 
-.btn {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.btn button {
-  height: 40px;
-  padding: 10px 20px;
+.category {
+  width: 140px;
+  height: 120px;
+  flex: 0 0 auto;
+  background-size: cover;
+  background-position: center;
   border-radius: 10px;
-  border: none;
-  background: #78c1f3;
   cursor: pointer;
-  box-shadow: 5px 5px 3px lightblue;
-  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: yellow;
+  border: 2px solid white;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.category:hover {
+  transform: scale(1.1);
 }
 
 .playground,
@@ -48,20 +69,18 @@ body {
   display: none;
 }
 
+/* Selected words display */
 .selectedWords {
   display: flex;
   gap: 15px;
-  flex-direction: row;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 15px;
 }
 
 .selectedWords .box {
-  width: 10vw; /* Scales dynamically */
-  height: 10vw;
-  max-width: 60px; /* Prevents it from being too big */
-  max-height: 60px;
+  width: 60px;
+  height: 60px;
   background: #78c1f3;
   border-radius: 10px;
   display: flex;
@@ -70,31 +89,29 @@ body {
   font-size: 1.5rem;
   font-weight: bold;
   color: #fff;
+  text-transform: capitalize;
   cursor: pointer;
   user-select: none;
 }
 
-#keyboard {
-  display: grid;
-  grid-template-columns: repeat(10, 50px); /* 4 rows of 5 letters each */
-  gap: 5px;
-  justify-content: center;
-  margin-top: 20px;
-  max-width: 90vw;
-  overflow-x: auto;
+/* Wrapper to center the keyboard */
+.keyboard-container {
+  display: flex;
+  justify-content: center; /* Centers the keyboard */
+  align-items: center;
+  width: 100%; /* Ensures it takes full width */
 }
 
-/* Responsive Layout for Small Screens */
-@media (max-width: 600px) {
-  #keyboard {
-    grid-template-columns: repeat(4, minmax(35px, 1fr)); /* 4 columns for smaller screens */
-    gap: 4px;
-  }
-  .key {
-    font-size: 40px; /* Slightly smaller keys for mobile */
-    width: auto;
-    height: 40px;
-  }
+/* Adjusted keyboard layout for better mobile usability */
+#keyboard {
+  display:grid;
+  grid-template-columns: repeat(13, 1fr); /* Fit more keys per row */
+  gap: 5px;
+  align-items: center;  /* Aligns vertically */
+  text-align: center;   /* Ensures text is centered */
+  justify-content: center;
+  margin-top: 20px;
+  max-width: 90%;
 }
 
 .key {
@@ -106,7 +123,8 @@ body {
   border: 1px solid #000;
   background-color: #86af8f;
   cursor: pointer;
-  font-size: 1.5vw;
+  font-size: 20px;
+  border-radius: 5px;
 }
 
 .key:hover {
@@ -115,53 +133,102 @@ body {
 
 .message {
   margin-top: 10px;
-  font-size: 1rem;
+  font-size: 16px;
   color: red;
 }
 
-/* 🎉 Animation for correct selection */
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-10px); }
-  60% { transform: translateY(-5px); }
+/* Responsive styles for tablets */
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 22px;
+  }
+
+  .container {
+    max-width: 90%;
+    padding: 30px;
+  }
+
+  .selectedWords .box {
+    width: 80px;
+    height: 80px;
+    font-size: 1.3rem;
+  }
+
+  #keyboard {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+  .key {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+
+
+/* Responsive styles for mobile phones */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  .container {
+    max-width: 95%;
+    padding: 20px;
+  }
+
+  .categories {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .category {
+    width: 100px;
+    height: 90px;
+    font-size: 14px;
+  }
+
+  .selectedWords {
+    gap: 10px;
+  }
+
+  .selectedWords .box {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+
+  #keyboard {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .key {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
 }
 
-.bounce {
-  animation: bounce 0.5s;
-}
+/* Extra small screens */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 18px;
+  }
 
-/* Responsive Category Section */
-.categories {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  width: 90vw;
-}
+  .container {
+    padding: 15px;
+  }
 
-.category {
-  width: 120px;
-  height: 100px;
-  flex: 0 0 auto;
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 16px;
-  font-weight: bold;
-  color: yellow;
-  border: 2px solid white;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
+  .selectedWords .box {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
 
-.category:hover {
-  transform: scale(1.1);
+  .key {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
 }
 
 /* Add Background Images */
