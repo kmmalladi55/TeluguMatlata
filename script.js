@@ -105,6 +105,9 @@ categoryButtons.forEach((button) => {
 
     // Start the game with the selected category
     startTheGame();
+    
+    // ✅ Enable the keyboard when category is selected
+    enableKeyboard();
   });
 });
 
@@ -162,7 +165,8 @@ function createKeyboard() {
   keyboard.innerHTML = "";
   teluguLetters.forEach((letter) => {
     const key = document.createElement("button");
-    key.className = "key";
+    key.className = "key disabled"; // 🔹 Initially disable keys
+    // key.className = "key";
     key.innerText = letter;
     key.style.backgroundColor = "#90caf9";
     keyboard.appendChild(key);
@@ -242,6 +246,13 @@ document.addEventListener("keydown", (event) => {
     event.preventDefault();
   }
 });
+
+
+function enableKeyboard() {
+  document.querySelectorAll(".key").forEach((key) => {
+    key.classList.remove("disabled");
+  });
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   createKeyboard();
