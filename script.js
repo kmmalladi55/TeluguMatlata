@@ -168,7 +168,7 @@ function createKeyboard() {
     key.className = "key disabled"; // 🔹 Initially disable keys
     // key.className = "key";
     key.innerText = letter;
-    key.style.backgroundColor = "#90caf9";
+    key.style.backgroundColor = "orange";
     keyboard.appendChild(key);
     key.addEventListener("click", handleKeyPress);
   });
@@ -180,7 +180,7 @@ function handleKeyPress(event) {
     const letter = key.textContent.trim();
   
     key.disabled = true;
-    key.style.backgroundColor = "#b0bec5"; // Gray out the key
+    key.style.backgroundColor = "orange"; // Gray out the key
   
     if (selectedKeyValuePairs.hasOwnProperty(letter)) {
       messageElement.textContent = "";
@@ -235,7 +235,7 @@ function resetKeyboard() {
   const keys = document.querySelectorAll(".key");
   keys.forEach((key) => {
     key.disabled = false;
-    key.style.backgroundColor = "#90caf9"; // Reset to default color
+    key.style.backgroundColor = "orange"; // Reset to default color
   });
 }
 

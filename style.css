@@ -121,7 +121,7 @@ body {
   align-items: center;
   justify-content: center;
   border: 1px solid #000;
-  background-color: #86af8f;
+  background-color: orange;
   cursor: pointer;
   font-size: 20px;
   border-radius: 5px;
@@ -255,9 +255,9 @@ body {
 }
 
 .marquee::after {
-  content: " 🎉 స్వాగతం! తెలుగు మాటల ఆటను ఆడుతూ ఆనందించండి! తెలుగు భాషనీ ప్రేమించుదాం! భావితరాలకు పంచుదాం! 🎉 ";
+  content: " 🎉 స్వాగతం! తెలుగు మాటల ఆటను ఆడుతూ ఆనందించండి! తెలుగు భాషని ప్రేమించుదాం! భావితరాలకు పంచుదాం! 🎉 ";
   display: inline-block;
-  animation: marquee-scroll 15s linear infinite;
+  animation: marquee-scroll 20s linear infinite;
 }
 
 @keyframes marquee-scroll {
