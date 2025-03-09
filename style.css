@@ -17,15 +17,30 @@ body {
   overflow: hidden; /* Prevent scrolling */
 }
 
-
 /* Container adjustments */
 .container {
   background: #f8f8f8;
-  border-radius: 20px;
+  border-radius: 40px;
   padding: 40px;
   margin-top: 20px;
   box-shadow: 10px 10px 0 0 #000000;
   max-width: 80%;
+  position: relative; /* This makes absolute positioning relative to the container */
+}
+
+.score {
+  /* Option 1: Use normal flow placement */
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px 10px;
+  border-radius: 5px;
+  /* Option 2: If you want it in the upper right corner inside the container */
+  /* position: absolute;
+     top: 10px;
+     right: 10px; */
 }
 
 /* Category Selection */
@@ -35,13 +50,13 @@ body {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  overflow-x: auto;
+  overflow-x: hidden; /* Change from auto to hidden */
   padding: 10px 0;
   width: 100%;
 }
 
 .category {
-  width: 140px;
+  width: 120px;
   height: 120px;
   flex: 0 0 auto;
   background-size: cover;
@@ -65,7 +80,8 @@ body {
 }
 
 .playground,
-.resetGame {
+.continueGame,
+.endGame {
   display: none;
 }
 
@@ -104,11 +120,11 @@ body {
 
 /* Adjusted keyboard layout for better mobile usability */
 #keyboard {
-  display:grid;
+  display: grid;
   grid-template-columns: repeat(13, 1fr); /* Fit more keys per row */
   gap: 5px;
-  align-items: center;  /* Aligns vertically */
-  text-align: center;   /* Ensures text is centered */
+  align-items: center; /* Aligns vertically */
+  text-align: center; /* Ensures text is centered */
   justify-content: center;
   margin-top: 20px;
   max-width: 90%;
@@ -158,12 +174,11 @@ body {
     grid-template-columns: repeat(8, 1fr);
   }
 }
-  .key {
-    width: 35px;
-    height: 35px;
-    font-size: 18px;
-  }
-
+.key {
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+}
 
 /* Responsive styles for mobile phones */
 @media (max-width: 768px) {
@@ -232,10 +247,18 @@ body {
 }
 
 /* Add Background Images */
-.category:nth-child(1) { background-image: url('world-map.jpg'); }
-.category:nth-child(2) { background-image: url('movie.jpg'); }
-.category:nth-child(3) { background-image: url('book.jpg'); }
-.category:nth-child(4) { background-image: url('objects.jpg'); }
+.category:nth-child(1) {
+  background-image: url("world-map.jpg");
+}
+.category:nth-child(2) {
+  background-image: url("movie.jpg");
+}
+.category:nth-child(3) {
+  background-image: url("book.jpg");
+}
+.category:nth-child(4) {
+  background-image: url("objects.jpg");
+}
 
 .disabled {
   pointer-events: none; /* Prevent clicks */
