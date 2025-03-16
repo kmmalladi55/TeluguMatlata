@@ -1,0 +1,47 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="te">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Telugu Word Game</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="data.obf.js"></script>
+    <script type="module" src="script.obf.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu&display=swap"
+    />
+  </head>
+  <body>
+    <div class="marquee">
+      <!-- 🎉 స్వాగతం! తెలుగు మాటల ఆటను ఆడుతూ ఆనందించండి! 🎉 -->
+    </div>
+    <h1 class="header">పదశోధన - ఒక సరదా ఆట</h1>
+    <h2 class="categoryTitle" style="display: none"></h2>
+
+    <div class="container">
+      <div class="score">Score: 0</div>
+      <div class="categories" style="display: none">
+        <div class="category" data-category="ప్రదేశాలు">ప్రదేశాలు</div>
+        <div class="category" data-category="సినిమాలు">సినిమాలు</div>
+        <div class="category" data-category="సాహిత్యం">సాహిత్యం</div>
+        <div class="category" data-category="వస్తువులు">వస్తువులు</div>
+      </div>
+      <div class="playground" style="display: none">
+        <div id="message" class="message"></div>
+        <div class="selectedWords"></div>
+      </div>
+      <div class="keyboard-container">
+        <div id="keyboard"></div>
+      </div>
+      <!-- <div id="keyboard"></div> -->
+      <div class="btn">
+        <button class="startGame">Start Game</button>
+        <!-- <button class="resetGame">Reset Game</button> -->
+        <button class="continueGame">Continue</button>
+        <button class="endGame">End Game</button>
+      </div>
+    </div>
+  </body>
+</html>
