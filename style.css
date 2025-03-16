@@ -107,7 +107,7 @@ body {
   color: #fff;
   text-transform: capitalize;
   cursor: pointer;
-  user-select: none;
+  /* user-select: none; */
 }
 
 /* Wrapper to center the keyboard */
