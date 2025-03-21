@@ -28,11 +28,26 @@ input {
   padding: 10px;
   margin-bottom: 10px;
 }
+
+/* ✅ Style the Submit and Skip buttons to match */
+button,
+input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s ease-in-out;
+}
+
 textarea {
   width: 100%;
   padding: 10px;
 }
-#submit {
+#submit,
+#skipRegistration {
   border: none;
   background-color: orangered;
   color: white;
