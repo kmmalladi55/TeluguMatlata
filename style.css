@@ -343,11 +343,45 @@ body {
     background-color: #e68900;
   }
 
-  /* ✅ Ensure Keyboard & End Game are Fully Visible */
-  #keyboard {
-    grid-template-columns: repeat(6, 1fr);
-    padding-bottom: 20px;
+  .categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* 🔹 Center align */
+    gap: 3px; /* 🔹 Reduce gap */
+    padding: 5px 0;
   }
+
+  .category {
+    flex: 1 0 22%; /* 🔹 Fit four categories in a row */
+    max-width: 22%; /* 🔹 Prevent growing beyond */
+    height: 70px; /* 🔹 Adjusted size */
+    font-size: 12px; /* 🔹 Smaller font */
+    text-align: center;
+    line-height: 70px;
+    white-space: nowrap; /* 🔹 Prevent text wrapping */
+  }
+}
+
+  .selectedWords {
+    gap: 10px;
+  }
+
+  .selectedWords .box {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+
+ #keyboard {
+  grid-template-columns: repeat(6, 1fr);
+  padding-bottom: 20px;
+}
+  .key {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+}
 
   .endGame {
     width: 100%;
