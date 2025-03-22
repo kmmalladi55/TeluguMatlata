@@ -302,27 +302,53 @@ body {
   color: red;
 }
 
-/* ✅ Fix Overlapping Score & Help - Keep in One Row */
+/* ✅ Score as a Bar & Help on Top-Right */
 @media (max-width: 768px) {
   .game-header {
+    position: relative; /* Allow absolute positioning */
     display: flex;
-    justify-content: space-between; /* Ensures Score is left, Help is right */
+    flex-direction: column;
     align-items: center;
     padding: 10px;
   }
 
+  /* ✅ Full-Width Score Bar */
   .score-container {
-    font-size: 1.2rem;
-    flex-grow: 1; /* Allows Score to take space */
-    text-align: left;
+    width: 100%;
+    text-align: center;
+    font-size: 1.3rem;
+    background-color: #003b5b;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-bottom: 5px;
   }
 
+  /* ✅ Move Help Button to Top-Right */
   .help-btn {
-    flex-shrink: 0; /* Ensures Help stays in place */
-    margin-left: auto; /* Pushes Help button to the right */
+    position: absolute;
+    top: -15px; /* Moves it slightly above */
+    right: 10px;
+    background-color: #ff9800;
+    color: white;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
   }
 
-  /* ✅ Ensure End Game button is visible */
+  .help-btn:hover {
+    background-color: #e68900;
+  }
+
+  /* ✅ Ensure Keyboard & End Game are Fully Visible */
+  #keyboard {
+    grid-template-columns: repeat(6, 1fr);
+    padding-bottom: 20px;
+  }
+
   .endGame {
     width: 100%;
     max-width: 250px;
@@ -330,30 +356,20 @@ body {
     padding: 12px;
     font-size: 18px;
   }
-
-  /* ✅ Fix Keyboard & Bottom Layout */
-  #keyboard {
-    grid-template-columns: repeat(6, 1fr);
-    padding-bottom: 20px; /* Add padding so it doesn't cut off */
-  }
 }
 
-/* ✅ Extra Small Screens Fix (Phones) */
+/* ✅ Extra Small Screens (Phones) */
 @media (max-width: 480px) {
-  .game-header {
-    flex-direction: row; /* Keeps Score & Help in a row */
-    justify-content: space-between;
-  }
-
   .score-container {
-    font-size: 1rem;
-    margin-right: 10px; /* Add spacing between Score & Help */
+    font-size: 1.1rem;
+    padding: 6px;
   }
 
   .help-btn {
-    width: auto; /* No full width */
-    padding: 8px 12px;
-    font-size: 14px;
+    top: -10px; /* Slightly adjusted for smaller screens */
+    right: 8px;
+    font-size: 12px;
+    padding: 6px 10px;
   }
 
   .selectedWords .box {
@@ -363,7 +379,7 @@ body {
   }
 
   #keyboard {
-    grid-template-columns: repeat(5, 1fr); /* Reduce columns for better fit */
+    grid-template-columns: repeat(5, 1fr);
   }
 
   .key {
