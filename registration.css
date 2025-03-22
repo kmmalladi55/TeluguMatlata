@@ -142,3 +142,14 @@ textarea {
   transition: background 0.3s ease-in-out;
 }
 
+@keyframes flash {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.flash-text {
+  font-weight: bold;
+  color: red;
+  animation: flash 1s infinite;
+}

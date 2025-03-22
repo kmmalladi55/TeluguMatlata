@@ -153,98 +153,83 @@ body {
   color: red;
 }
 
-/* Responsive styles for tablets */
-@media (max-width: 1024px) {
-  h1 {
-    font-size: 22px;
-  }
-
-  .container {
-    max-width: 90%;
-    padding: 30px;
-  }
-
-  .selectedWords .box {
-    width: 80px;
-    height: 80px;
-    font-size: 1.3rem;
-  }
-
-  #keyboard {
-    grid-template-columns: repeat(8, 1fr);
-  }
-}
-.key {
-  width: 35px;
-  height: 35px;
-  font-size: 18px;
-}
-
-/* Responsive styles for mobile phones */
+/* ✅ Fix Overlapping Score & Help on Mobile */
 @media (max-width: 768px) {
-  h1 {
-    font-size: 20px;
+  .game-header {
+    display: flex;
+    flex-direction: column; /* Stack items */
+    align-items: center;
+    gap: 10px; /* Add spacing */
   }
 
-  .container {
-    max-width: 95%;
-    padding: 20px;
-  }
-
-  .categories {
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-
-  .category {
-    width: 100px;
-    height: 90px;
-    font-size: 14px;
-  }
-
-  .selectedWords {
-    gap: 10px;
-  }
-
-  .selectedWords .box {
-    width: 45px;
-    height: 45px;
+  .score-container {
+    order: 1; /* Ensure score appears first */
+    text-align: center;
     font-size: 1.2rem;
   }
 
+  .help-btn {
+    order: 2;
+    margin-top: 5px; /* Add spacing from score */
+  }
+
+  /* ✅ Ensure End Game button is visible */
+  .endGame {
+    width: 100%;
+    max-width: 250px;
+    margin-top: 10px;
+    padding: 12px;
+    font-size: 18px;
+  }
+
+  /* ✅ Fix Keyboard & Bottom Layout */
   #keyboard {
     grid-template-columns: repeat(6, 1fr);
+    padding-bottom: 20px; /* Add padding so it doesn't cut off */
+  }
+}
+
+/* ✅ Extra Small Screens Fix (Phones) */
+@media (max-width: 480px) {
+  .game-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .help-btn {
+    width: 100%;
+    max-width: 150px;
+    text-align: center;
+  }
+
+  .score-container {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+
+  .selectedWords .box {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+
+  #keyboard {
+    grid-template-columns: repeat(5, 1fr); /* Reduce columns for better fit */
   }
 
   .key {
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
+    font-size: 14px;
+  }
+
+  .endGame {
+    width: 100%;
+    padding: 10px;
     font-size: 16px;
   }
 }
 
-/* Extra small screens */
-@media (max-width: 480px) {
-  h1 {
-    font-size: 18px;
-  }
-
-  .container {
-    padding: 15px;
-  }
-
-  .selectedWords .box {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-  }
-
-  .key {
-    width: 28px;
-    height: 28px;
-    font-size: 14px;
-  }
-}
 
 /* Add Background Images */
 .category:nth-child(1) {
