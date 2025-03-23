@@ -368,7 +368,7 @@ body {
   }
 
  #keyboard {
-    grid-template-columns: repeat(6, 1fr); /* ✅ Change from 5 to 6 columns */
+    grid-template-columns: repeat(7, 1fr); /* ✅ Change from 5 to 6 columns */
     gap: 4px; /* ✅ Reduce gap to save space */
     padding-bottom: 10px; /* ✅ Minimize bottom padding */
   }
