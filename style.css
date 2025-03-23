@@ -342,69 +342,23 @@ body {
   background-color: #e68900;
 }
 
-/* ✅ Responsive Layout for Mobile & Tablets */
-@media (max-width: 1024px) {
+
+
+/* --- Responsive Adjustments --- */
+
+/* ✅ Mobile Devices (320px - 480px) */
+@media (max-width: 480px) {
   .container {
     max-width: 95%;
-    padding: 20px;
+    padding: 15px;
+    margin-top: 5px;
+    box-shadow: 5px 5px 0 0 #000000;
   }
 
-  .categories {
-    display: flex;
-    flex-wrap: nowrap; /* 🔹 Ensures categories stay in one row */
-    justify-content: space-between;
-    gap: 2px;
-    padding: 5px 0;
-  }
-
-  .category {
-    flex: 1 0 24%; /* 🔹 Adjusted for 4 categories in one row */
-    max-width: 24%;
-    height: 70px;
-    font-size: 12px;
-    text-align: center;
-    line-height: 70px;
-    white-space: nowrap;
-  }
-
-  .selectedWords .box {
-    width: 50px;
-    height: 50px;
-    font-size: 1.3rem;
-  }
-
-  #keyboard {
-    grid-template-columns: repeat(6, 1fr);
-    padding-bottom: 20px;
-  }
-
-  .key {
-    width: 35px;
-    height: 35px;
-    font-size: 16px;
-  }
-
-  .endGame, .continueGame {
-    width: 100%;
-    max-width: 250px;
-    margin-top: 10px;
-    padding: 12px;
-    font-size: 18px;
-  }
-}
-
-/* ✅ Extra Small Screens (Phones) */
-@media (max-width: 768px) {
-  .score-container {
-    font-size: 1.2rem;
-    padding: 8px;
-  }
-
-  .help-btn {
-    top: -10px;
-    right: 8px;
-    font-size: 12px;
-    padding: 6px 10px;
+  .marquee {
+    font-size: 14px;
+    max-height: 35px;
+    padding: 5px;
   }
 
   .selectedWords .box {
@@ -418,32 +372,74 @@ body {
   }
 
   .key {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     font-size: 14px;
   }
 
   .endGame, .continueGame {
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
+    max-width: 180px;
+    font-size: 14px;
+    padding: 8px;
   }
 }
 
-/* ✅ Laptops & Desktops (Large Screens) */
-@media (min-width: 1025px) {
+/* ✅ Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
   .container {
-    max-width: 900px !important;  
-    padding: 40px;
+    max-width: 90%;
+    padding: 20px;
   }
-  
+
   .selectedWords .box {
-    width: 100px !important;
-    height: 100px !important;
-    font-size: 1.5rem !important;
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
   }
-  
+
   #keyboard {
-    grid-template-columns: repeat(10, 1fr) !important;
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .key {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+
+  .endGame, .continueGame {
+    width: 100%;
+    max-width: 200px;
+    font-size: 16px;
+    padding: 10px;
   }
 }
+
+/* ✅ Small Screens & Laptops (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    max-width: 85%;
+    padding: 30px;
+  }
+
+  #keyboard {
+    grid-template-columns: repeat(10, 1fr);
+  }
+}
+
+/* ✅ Desktops & Large Screens (1025px - 1200px) */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .container {
+    max-width: 900px;
+    padding: 40px;
+  }
+}
+
+/* ✅ Extra Large Screens (1201px+) */
+@media (min-width: 1201px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
