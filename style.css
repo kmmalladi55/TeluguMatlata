@@ -302,88 +302,89 @@ body {
   color: red;
 }
 
-/* ✅ Score as a Bar & Help on Top-Right */
-@media (max-width: 768px) {
-  .game-header {
-    position: relative; /* Allow absolute positioning */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
+/* ✅ General Styles */
+.game-header {
+  position: relative; /* Allows positioning of Help button */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
 
-  /* ✅ Full-Width Score Bar */
-  .score-container {
-    width: 100%;
-    text-align: center;
-    font-size: 1.3rem;
-    background-color: #003b5b;
-    color: white;
-    padding: 8px;
-    border-radius: 8px;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
+/* ✅ Full-Width Score Bar */
+.score-container {
+  width: 100%;
+  text-align: center;
+  font-size: 1.3rem;
+  background-color: #003b5b;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
 
-  /* ✅ Move Help Button to Top-Right */
-  .help-btn {
-    position: absolute;
-    top: -15px; /* Moves it slightly above */
-    right: 10px;
-    background-color: #ff9800;
-    color: white;
-    padding: 8px 12px;
-    font-size: 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
+/* ✅ Help Button on Top-Right */
+.help-btn {
+  position: absolute;
+  top: -12px;
+  right: 10px;
+  background-color: #ff9800;
+  color: white;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
 
-  .help-btn:hover {
-    background-color: #e68900;
+.help-btn:hover {
+  background-color: #e68900;
+}
+
+/* ✅ Responsive Layout for Mobile & Tablets */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 95%;
+    padding: 20px;
   }
 
   .categories {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* 🔹 Center align */
-    gap: 3px; /* 🔹 Reduce gap */
+    flex-wrap: nowrap; /* 🔹 Ensures categories stay in one row */
+    justify-content: space-between;
+    gap: 2px;
     padding: 5px 0;
   }
 
   .category {
-    flex: 1 0 22%; /* 🔹 Fit four categories in a row */
-    max-width: 22%; /* 🔹 Prevent growing beyond */
-    height: 70px; /* 🔹 Adjusted size */
-    font-size: 12px; /* 🔹 Smaller font */
+    flex: 1 0 24%; /* 🔹 Adjusted for 4 categories in one row */
+    max-width: 24%;
+    height: 70px;
+    font-size: 12px;
     text-align: center;
     line-height: 70px;
-    white-space: nowrap; /* 🔹 Prevent text wrapping */
-  }
-}
-
-  .selectedWords {
-    gap: 10px;
+    white-space: nowrap;
   }
 
   .selectedWords .box {
-    width: 45px;
-    height: 45px;
-    font-size: 1.2rem;
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
   }
 
- #keyboard {
-  grid-template-columns: repeat(6, 1fr);
-  padding-bottom: 20px;
-}
+  #keyboard {
+    grid-template-columns: repeat(6, 1fr);
+    padding-bottom: 20px;
+  }
+
   .key {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     font-size: 16px;
   }
-}
 
-  .endGame {
+  .endGame, .continueGame {
     width: 100%;
     max-width: 250px;
     margin-top: 10px;
@@ -393,22 +394,22 @@ body {
 }
 
 /* ✅ Extra Small Screens (Phones) */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .score-container {
-    font-size: 1.1rem;
-    padding: 6px;
+    font-size: 1.2rem;
+    padding: 8px;
   }
 
   .help-btn {
-    top: -10px; /* Slightly adjusted for smaller screens */
+    top: -10px;
     right: 8px;
     font-size: 12px;
     padding: 6px 10px;
   }
 
   .selectedWords .box {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     font-size: 1rem;
   }
 
@@ -417,21 +418,22 @@ body {
   }
 
   .key {
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
     font-size: 14px;
   }
 
-  .endGame {
+  .endGame, .continueGame {
     width: 100%;
     padding: 10px;
     font-size: 16px;
   }
 }
 
+/* ✅ Laptops & Desktops (Large Screens) */
 @media (min-width: 1025px) {
   .container {
-    max-width: 900px !important;  /* Ensures wider layout on larger screens */
+    max-width: 900px !important;  
     padding: 40px;
   }
   
