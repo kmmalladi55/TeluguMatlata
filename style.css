@@ -428,3 +428,20 @@ body {
     font-size: 16px;
   }
 }
+
+@media (min-width: 1025px) {
+  .container {
+    max-width: 900px !important;  /* Ensures wider layout on larger screens */
+    padding: 40px;
+  }
+  
+  .selectedWords .box {
+    width: 100px !important;
+    height: 100px !important;
+    font-size: 1.5rem !important;
+  }
+  
+  #keyboard {
+    grid-template-columns: repeat(10, 1fr) !important;
+  }
+}
