@@ -385,6 +385,22 @@ body {
     display: inline-block; /* ✅ Makes them inline but still respect width */
     text-align: center;
   }
+
+  categories {
+    display: flex;
+    flex-wrap: wrap; /* ✅ Allows wrapping to next row */
+    justify-content: center; /* ✅ Center-aligns categories */
+    gap: 5px; /* ✅ Reduces space for better fit */
+    overflow-x: visible; /* ✅ Ensures categories are visible */
+  }
+
+  .category {
+    flex: 1 1 calc(50% - 10px); /* ✅ Makes 2 categories per row */
+    max-width: calc(50% - 10px); /* ✅ Prevents overflow */
+    height: 80px; /* ✅ Adjusts height for better fit */
+    font-size: 14px; /* ✅ Ensures text fits inside */
+    line-height: 80px; /* ✅ Centers text */
+  }
 }
 
 /* ✅ Tablets (481px - 768px) */
