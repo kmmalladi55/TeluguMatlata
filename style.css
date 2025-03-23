@@ -367,23 +367,26 @@ body {
     font-size: 1rem;
   }
 
-  #keyboard {
-    grid-template-columns: repeat(5, 1fr);
+ #keyboard {
+    grid-template-columns: repeat(6, 1fr); /* ✅ Change from 5 to 6 columns */
+    gap: 4px; /* ✅ Reduce gap to save space */
+    padding-bottom: 10px; /* ✅ Minimize bottom padding */
   }
 
   .key {
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
+    width: 26px; /* ✅ Shrink key size */
+    height: 26px;
+    font-size: 14px; /* ✅ Keep text readable */
   }
 
- .endGame, .continueGame {
-    width: auto; /* Adjust width based on content */
-    max-width: 200px; /* Prevents excessive stretching */
-    font-size: 16px;
-    padding: 10px;
-    display: inline-block; /* ✅ Makes them inline but still respect width */
-    text-align: center;
+  /* Ensure End Game & Continue buttons fit inline */
+  .endGame, .continueGame {
+    display: inline-block; /* ✅ Place buttons in same row */
+    width: 45%; /* ✅ Adjust width so both fit */
+    max-width: 150px;
+    font-size: 14px;
+    padding: 8px;
+    margin: 5px;
   }
 
   .categories {
