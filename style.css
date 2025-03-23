@@ -377,11 +377,13 @@ body {
     font-size: 14px;
   }
 
-  .endGame, .continueGame {
-    width: 100%;
-    max-width: 180px;
-    font-size: 14px;
-    padding: 8px;
+ .endGame, .continueGame {
+    width: auto; /* Adjust width based on content */
+    max-width: 200px; /* Prevents excessive stretching */
+    font-size: 16px;
+    padding: 10px;
+    display: inline-block; /* ✅ Makes them inline but still respect width */
+    text-align: center;
   }
 }
 
