@@ -386,20 +386,23 @@ body {
     text-align: center;
   }
 
-  categories {
+  .categories {
     display: flex;
-    flex-wrap: wrap; /* ✅ Allows wrapping to next row */
-    justify-content: center; /* ✅ Center-aligns categories */
-    gap: 5px; /* ✅ Reduces space for better fit */
-    overflow-x: visible; /* ✅ Ensures categories are visible */
+    flex-wrap: nowrap; /* ✅ Keep categories in one row */
+    justify-content: center; /* ✅ Center-align */
+    gap: 2px; /* ✅ Minimize gaps to fit all categories */
+    overflow-x: auto; /* ✅ Allow scrolling if necessary */
+    padding: 5px 0;
   }
 
   .category {
-    flex: 1 1 calc(50% - 10px); /* ✅ Makes 2 categories per row */
-    max-width: calc(50% - 10px); /* ✅ Prevents overflow */
-    height: 80px; /* ✅ Adjusts height for better fit */
-    font-size: 14px; /* ✅ Ensures text fits inside */
-    line-height: 80px; /* ✅ Centers text */
+    flex: 0 0 22%; /* ✅ Shrinks category width to fit in 1 row */
+    max-width: 22%;
+    height: 60px; /* ✅ Reduces height for better fit */
+    font-size: 12px; /* ✅ Ensures text remains readable */
+    text-align: center;
+    line-height: 60px; /* ✅ Centers text */
+    white-space: nowrap; /* ✅ Prevents text from wrapping */
   }
 }
 
