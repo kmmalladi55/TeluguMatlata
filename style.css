@@ -26,6 +26,7 @@ body {
   box-shadow: 10px 10px 0 0 #000000;
   max-width: 80%;
   position: relative; /* This makes absolute positioning relative to the container */
+  z-index: 1; /* Keeps container above falling elements */
 }
 
 .score {
@@ -467,3 +468,19 @@ body {
   }
 }
 
+.falling {
+  position: fixed;
+  top: -50px;
+  font-size: 50px;
+  z-index: 0; /* ✅ Keep behind main content */
+  pointer-events: none;
+  animation: fall linear infinite;
+  transform: rotate(${Math.random() * 360}deg);
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
