@@ -156,16 +156,16 @@ body {
 
 /* Add Background Images */
 .category:nth-child(1) {
-  background-image: url("world-map.jpg");
+  background-image: url("../assets/world-map.jpg");
 }
 .category:nth-child(2) {
-  background-image: url("movie.jpg");
+  background-image: url("../assets/movie.jpg");
 }
 .category:nth-child(3) {
-  background-image: url("book.jpg");
+  background-image: url("../assets/book.jpg");
 }
 .category:nth-child(4) {
-  background-image: url("objects.jpg");
+  background-image: url("../assets/objects.jpg");
 }
 
 .disabled {
@@ -231,14 +231,13 @@ body {
   background-color: #e68900;
 }
 
-
 /* Help Modal Content Styling */
 .help-text {
   text-align: left;
   font-size: 16px;
 }
 
-.help-text h3, 
+.help-text h3,
 .help-text h4 {
   margin-top: 15px;
   color: #ff9800;
@@ -343,8 +342,6 @@ body {
   background-color: #e68900;
 }
 
-
-
 /* --- Responsive Adjustments --- */
 
 /* ✅ Mobile Devices (320px - 480px) */
@@ -368,7 +365,7 @@ body {
     font-size: 1rem;
   }
 
- #keyboard {
+  #keyboard {
     grid-template-columns: repeat(7, 1fr); /* ✅ Change from 5 to 6 columns */
     gap: 4px; /* ✅ Reduce gap to save space */
     padding-bottom: 10px; /* ✅ Minimize bottom padding */
@@ -381,7 +378,8 @@ body {
   }
 
   /* Ensure End Game & Continue buttons fit inline */
-  .endGame, .continueGame {
+  .endGame,
+  .continueGame {
     display: inline-block; /* ✅ Place buttons in same row */
     width: 45%; /* ✅ Adjust width so both fit */
     max-width: 150px;
@@ -433,7 +431,8 @@ body {
     font-size: 16px;
   }
 
-  .endGame, .continueGame {
+  .endGame,
+  .continueGame {
     width: 100%;
     max-width: 200px;
     font-size: 16px;
@@ -483,4 +482,20 @@ body {
     transform: translateY(100vh);
     opacity: 0;
   }
+}
+
+.space-box {
+  background-color: #e0e0e0; /* light grey */
+  color: #888;
+  border: 1px dashed #aaa;
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  box-shadow: none;
+  cursor: default;
 }

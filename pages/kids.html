@@ -1,0 +1,120 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="te">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <!-- Prevents the favicon.ico 404 error -->
+    <title>Telugu Word Game - Kids</title>
+    <link rel="stylesheet" href="../css/kidStyle.css" />
+    <script src="../js/kdt_obf.js"></script>
+    <script src="../js/ks.obf.js" type="module"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu&display=swap"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  </head>
+  <div class="word-rain"></div>
+  <body>
+    <!-- 📘 Word of the Day -->
+    <div class="word-of-day">
+      <span class="word-label">📚 Word of the Day:</span>
+      <span id="todays-word">Loading...</span>
+    </div>
+    <!-- Top Moving Marquee -->
+    <div class="moving-banner">
+      <div class="marquee-track">
+        📘 మాతృ దేవో భవ! 📘 పితృ దేవో భవ! 📘 ఆచార్య దేవో భవ!
+      </div>
+    </div>
+
+    <h1 class="header">తెలుగు మాటల ఆట - పిల్లల కోసం</h1>
+
+    <div class="container">
+      <!-- 📘 How to Play Button -->
+      <div class="howto-wrapper">
+        <button class="howto-btn">❓ How to</button>
+      </div>
+      <div class="message-container">
+        <p class="message-box"></p>
+      </div>
+      <div class="gameCards" style="display: none">
+        <!-- Hide initially -->
+        <div class="cards" data-option="Relations">
+          👨‍👩‍👧<br />Relations<br />చుట్టాలు
+        </div>
+        <div class="cards" data-option="Foods">🍎<br />Foods<br />ఆహారం</div>
+        <div class="cards" data-option="Animals">
+          🐶<br />Animals<br />జంతువులు
+        </div>
+        <div class="cards" data-option="Items">
+          📚<br />Items<br />వస్తువులు
+        </div>
+      </div>
+
+      <div class="playground" style="display: none">
+        <!-- Hide initially -->
+        <h2 class="questionHint"></h2>
+        <br />
+        <div class="selectedWords"></div>
+        <div class="shuffleWords"></div>
+      </div>
+
+      <div class="btn">
+        <button class="startGame">Start Game</button>
+        <button class="categoryBack" style="display: none">
+          🔄 Pick Different Category
+        </button>
+        <button class="endGame" style="display: none">End Game</button>
+      </div>
+    </div>
+    <!-- Bottom Moving Marquee -->
+    <div class="moving-banner">
+      <div class="marquee-track">
+        💬 అమ్మ, నాన్న తో తెలుగు లో మాట్లాడండి 📘 రోజు ఒక తెలుగు పదం
+        నేర్చుకోండి!
+      </div>
+    </div>
+    <!-- 📘 How to Play Modal -->
+    <div class="howto-modal" id="howtoModal">
+      <div class="howto-content">
+        <span class="close-howto" id="closeHowto">&times;</span>
+        <h3>🎮 How to Play Telugu Word Game</h3>
+        <p>
+          This is exclusively for kids who started learning Telugu at their
+          tender age.
+        </p>
+        <ol>
+          <li>Click on <strong>Kids Click Here</strong> to start.</li>
+          <li>Select any category of your choice.</li>
+          <li>You will see a clue in English.</li>
+          <li>
+            Two rows appear with boxes – the bottom row has shuffled Telugu
+            letters.
+          </li>
+          <li>
+            Click the correct letters in order. If you go wrong twice, the
+            system helps you!
+          </li>
+          <li>Finish a word and watch 🎉 confetti! You can...</li>
+          <ul>
+            <li>Continue words in the same category</li>
+            <li>
+              Or choose a different one by clicking
+              <strong>Pick Different Category</strong>
+            </li>
+          </ul>
+          <li>
+            Click <strong>End Game</strong> to stop and close the game anytime.
+          </li>
+        </ol>
+        <p class="telugu-tag">
+          📚 తెలుగు నేర్చుకోండి, నేర్పండి, మర్చిపోకండి! 💖
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

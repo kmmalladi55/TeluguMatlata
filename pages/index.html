@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="te">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Telugu Word Game - Registration</title>
+    <link rel="stylesheet" href="../css/registration.css" />
+    <script type="module" src="../js/dummy.obf.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu&display=swap"
+    />
+  </head>
+  <body>
+    <div class="marquee">
+      <!-- 🎉 స్వాగతం! తెలుగు మాటల ఆటను ఆడుతూ ఆనందించండి! 🎉 -->
+    </div>
+    <h1 class="header">పదశోధన - ఒక సరదా ఆట</h1>
+    <div class="container">
+      <form method="post" action="" name="RegistrationForm">
+        <!-- Help Button -->
+        <button id="helpButton" class="help-btn" type="button">
+          Read This Before You Begin
+        </button>
+
+        <h4 id="formTitle">Registration Here</h4>
+
+        <input type="text" name="FullName" placeholder="Name" required />
+        <input type="text" name="Email" placeholder="Email" required />
+        <input type="text" name="Age" placeholder="Age" required />
+  
+
+        <!-- Hidden Fields for Score & Feedback -->
+        <div id="gameFeedbackSection" style="display: none">
+          <h4>Your Final Score</h4>
+          <input type="text" name="Score" id="scoreField" readonly />
+          <textarea
+            name="Feedback"
+            rows="4"
+            placeholder="Your feedback"
+          ></textarea>
+        </div>
+
+        <div class="button-container">
+          <input type="submit" value="Submit" id="submit" />
+          <button type="button" id="skipRegistration">Skip Registration</button>
+        </div>
+
+        <!-- Help Modal (Pop-up Window) -->
+        <div id="helpModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <!-- <h2>ℹ️ Before You Start</h2> -->
+            <div class="help-text">
+              <h3>📜 Registration – Why Register?</h3>
+              <ul>
+                <li>
+                  1️⃣ Track your score and progress, especially when
+                  participating in competitions.
+                </li>
+                <li>
+                  2️⃣ Receive a Telugu Word of the Day via email to start your
+                  day with fresh learning! 🌅
+                </li>
+                <li>
+                  3️⃣ Help us spread the love for Telugu by sharing with friends
+                  and family who cherish the language.
+                </li>
+                <li>
+                  4️⃣ Your feedback matters! Share your thoughts to make the game
+                  even more fun and engaging. 🎉
+                </li>
+              </ul>
+
+              <h3>⏩ Skip Registration – Just Play & Enjoy!</h3>
+              <p>
+                Not ready to register? No worries! Click **Skip Registration**
+                and jump straight into the game. Have fun exploring Telugu
+                words! 🎮
+              </p>
+
+              <h3 class="flash-text">
+                ⏩ Once you're on the Game Page, click '❓ Help' to learn how to
+                play!
+              </h3>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- <link rel="stylesheet" href="registration.css" />
+  <script type="module" src="dummy.obf.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu&display=swap"
+  /> -->
+
+    <!-- 🌟 Exciting Star Button for Kids -->
+    <div class="kids-star-wrapper">
+      <a href="kids.html" class="kids-star"> ⭐ Kids click here ⭐ </a>
+    </div>
+  </body>
+</html>

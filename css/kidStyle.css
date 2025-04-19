@@ -1,0 +1,452 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu&display=swap");
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Noto Sans Telugu', 'Arial Unicode MS', sans-serif;
+} */
+
+/* 🌈 Background & Font */
+body {
+  font-family: "Comic Sans MS", "Noto Sans Telugu", sans-serif;
+  background: linear-gradient(120deg, #ffecd2, #fcb69f);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin: 10px;
+  padding: 10px;
+  font-size: 2.2rem;
+  color: #d63031;
+  text-shadow: 2px 2px 5px #ffeaa7;
+  animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* 🧃 Main Game Container */
+.container {
+  background: #fff9c4;
+  border-radius: 40px;
+  padding: 30px;
+  margin-top: 10px;
+  box-shadow: 10px 10px 0 0 #ff9ff3;
+  max-width: 90%;
+  max-height: 80vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  position: relative;
+}
+
+/* 🧩 Category Cards */
+.gameCards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cards {
+  width: 120px;
+  height: 120px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 3px solid #ffeaa7;
+  background: linear-gradient(145deg, #a29bfe, #81ecec);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 4px 10px #dfe6e9;
+  font-size: 18px;
+  font-weight: bold;
+  color: #2d3436;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  text-align: center;
+  line-height: 1.3;
+  padding: 10px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.cards:hover,
+.cards.active {
+  background: linear-gradient(145deg, #fd79a8, #ffeaa7);
+  transform: scale(1.1);
+  box-shadow: 6px 6px 15px #b2bec3;
+}
+
+.cards br {
+  display: block;
+  content: "";
+  margin-top: 4px;
+}
+
+.disabled-category {
+  background: #dfe6e9;
+  color: #636e72;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* 🧸 Buttons */
+.btn {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  align-items: center; /* Center horizontally */
+  gap: 10px; /* Space between buttons */
+  margin-top: 20px;
+}
+
+.btn button {
+  width: 200px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 12px;
+  background-color: #74b9ff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.btn button:hover {
+  background-color: #0984e3;
+}
+
+.pick-category-btn {
+  white-space: nowrap; /* Prevents text from wrapping */
+  padding: 12px 24px; /* Optional: more space inside */
+  font-size: 13px; /* Make sure it's readable */
+  min-width: 150px;
+}
+
+/* ✏️ Hint and Boxes */
+.questionHint {
+  font-size: 22px;
+  color: #6c5ce7;
+  margin-bottom: 10px;
+}
+
+.selectedWords,
+.shuffleWords {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.selectedWords .box,
+.shuffleWords .box {
+  width: 80px;
+  height: 80px;
+  background: #fab1a0;
+  border-radius: 20px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #2d3436;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  cursor: pointer;
+  box-shadow: 3px 3px 10px #ccc;
+  transition: transform 0.3s ease;
+}
+
+.selectedWords .box:hover,
+.shuffleWords .box:hover {
+  transform: scale(1.1);
+}
+
+.box.match {
+  background: #00b894;
+  color: #fff;
+  animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.box.shake {
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* 🗯️ Message Box */
+.message-box {
+  background: #e17055;
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-top: 10px;
+  display: none;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .cards,
+  .box {
+    width: 70px;
+    height: 70px;
+    font-size: 18px;
+  }
+
+  .btn button {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  .questionHint {
+    font-size: 18px;
+  }
+}
+
+.word-of-day {
+  background: #ffeaa7;
+  padding: 12px 20px;
+  font-size: 20px;
+  color: #2d3436;
+  font-weight: bold;
+  border-bottom: 2px solid #fdcb6e;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  text-align: center;
+  width: 100%;
+}
+
+.word-of-day .word-label {
+  color: #d63031;
+  margin-right: 8px;
+}
+
+.word-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* so kids can still click in the game */
+  z-index: 0;
+}
+
+.falling-word {
+  position: absolute;
+  top: -50px;
+  font-weight: bold;
+  font-family: "Noto Sans Telugu", cursive;
+  animation: fall 6s linear forwards;
+  opacity: 0.9;
+  z-index: 0;
+  user-select: none;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(50vh) rotate(5deg);
+  }
+  100% {
+    transform: translateY(100vh) rotate(-5deg);
+    opacity: 0;
+  }
+}
+*/ .marquee-glow {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
+  background: linear-gradient(to right, #ffeaa7, #fab1a0);
+  color: #2d3436;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #fdcb6e;
+  margin: 10px 0;
+}
+
+.marquee-glow::after {
+  content: attr(data-text);
+  position: absolute;
+  white-space: nowrap;
+  will-change: transform;
+  animation: scroll-left 8s linear infinite; /* ⏩ Faster! */
+  left: 100%;
+  color: #d63031;
+  font-weight: bold;
+  font-size: 20px;
+  text-shadow:
+    0 0 6px #fff176,
+    0 0 10px #fd79a8;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.moving-banner {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(to right, #ffeaa7, #fab1a0);
+  padding: 12px 0;
+  box-shadow: 0 0 10px #fdcb6e;
+  font-weight: bold;
+  font-size: 20px;
+  color: #2d3436;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.marquee-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-left 8s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* 📘 How to Button */
+.howto-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.howto-btn {
+  background: #ffeaa7;
+  color: #2d3436;
+  border: none;
+  padding: 8px 14px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 📘 Modal Styling */
+.howto-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.howto-content {
+  background-color: #fffbe6;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  color: #2d3436;
+  font-size: 16px;
+  text-align: left;
+  line-height: 1.6;
+  position: relative;
+  box-shadow: 0 0 10px #fdcb6e;
+}
+
+.close-howto {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #e17055;
+  cursor: pointer;
+}
+
+.close-howto:hover {
+  color: red;
+}
+
+.howto-content h3 {
+  margin-top: 0;
+  color: #e67e22;
+  font-size: 20px;
+}
+
+.howto-content ol {
+  margin-left: 20px;
+}
+
+.telugu-tag {
+  color: #d63031;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+}
